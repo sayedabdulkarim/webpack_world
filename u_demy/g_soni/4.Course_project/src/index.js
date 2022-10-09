@@ -1,4 +1,13 @@
-import "./libs/toast/toastr.scss";
+import $ from "jquery";
+import toastr from "toastr";
+import validate from "validate.js";
+import _ from "lodash";
+import Typed from "typed.js";
+
+import "./index.css";
+import "./_vendor.scss"
+
+// import "./libs/toast/toastr.scss";
 
 const footerCol1Items = ["Home", "About", "Contact us", "FAQ", "Blog"];
 const footerCol2Items = ["Flutter", "Javascript", "Java", "Nodejs", "Python"];

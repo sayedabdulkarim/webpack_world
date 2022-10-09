@@ -1,4 +1,10 @@
-// import courseData from "../data/courses.json";
+import $ from "jquery";
+import _ from "lodash";
+
+import "../index.css";
+import "../_vendor.scss"
+
+import courseData from "../data/courses.json";
 
 function loadCourses() {
   const courseListSection = $("#course-list")[0];
