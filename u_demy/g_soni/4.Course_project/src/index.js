@@ -4,6 +4,8 @@ import validate from "validate.js";
 import _ from "lodash";
 import Typed from "typed.js";
 
+// import showModal from "./components/modal";
+
 import "./index.css";
 import "./_vendor.scss"
 
@@ -57,3 +59,20 @@ const footerCol3 = $("#footer-column-3")[0];
 buildFooterItems(footerCol1, footerCol1Items);
 buildFooterItems(footerCol2, footerCol2Items);
 buildFooterItems(footerCol3, footerCol3Items);
+
+
+//modal
+// $("#pricing-plan").on("click", function () {
+//   showModal();
+//   $("#myModal").css("display", "block");
+// });
+// dynamic import
+$("#pricing-plan").on("click", function () {
+  // import showModal from "./components/modal";
+  import (/* webpackChunkName: "modal" */ "./components/modal.js")
+    .then( module => {
+      const showModal = module.default;
+      showModal();
+      $("#myModal").css("display", "block");
+    })
+});

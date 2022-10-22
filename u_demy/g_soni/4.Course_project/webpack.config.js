@@ -1,6 +1,7 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
     entry: {
@@ -8,7 +9,7 @@ module.exports = {
         courses: "./src/pages/courses.js",
     },
     output: {
-        filename: "[name].bundle.js",
+        filename: "[name].[contenthash].js",
         path: path.resolve(__dirname, " dist"),
         clean: true
     },
@@ -53,8 +54,14 @@ module.exports = {
               }
             ],
           }),
+        //   new BundleAnalyzerPlugin({})
       
     ],
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        }
+    },
     devServer: {
         static: "./ dist"
     },
