@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SeatSelectionContent.scss";
 
-const SeatSelectionContent = () => {
+const SeatSelectionContent = (props) => {
   const [bookingData, setBookingData] = useState({
     movie: "Select Movie",
     date: "Select Date",
@@ -55,8 +55,13 @@ const SeatSelectionContent = () => {
     );
   };
 
+  useEffect(() => {
+    loadBooking(props.data)
+  }, [ props.data ])
+
   return (
     <div className="seat-selection-container">
+      {/* <button onClick={_ => console.log(props, " propsss")}>props</button> */}
       <div className="column">{renderImage()}</div>
       <div className="column full-width p-20">
         <span className="movie-title">{bookingData.movie}</span>

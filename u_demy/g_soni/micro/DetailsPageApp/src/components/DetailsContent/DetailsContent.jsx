@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./DetailsContent.scss";
 
-const DetailsContent = (props) => {
+const DetailsContent = ({
+  setBookingData,
+  routing
+}) => {
   const [movie, setMovie] = useState([]);
   const [date, setDate] = useState("01/02/2022");
   const [time, setTime] = useState("10 Am");
@@ -10,12 +14,14 @@ const DetailsContent = (props) => {
     const resp = await fetch("http://localhost:5555/movies");
     const data = await resp.json();
 
-    let pathArr = props.location.pathname.split("/");
+    let pathArr = routing.location.pathname.split("/");
     let id = pathArr[pathArr.length - 1];
 
     const selectedMovie = data.filter((movie) => {
       return movie.id === parseInt(id);
     });
+
+    console.log(pathArr, " pppp")
 
     setMovie(selectedMovie[0]);
   }, []);
@@ -31,10 +37,14 @@ const DetailsContent = (props) => {
       date,
       time,
     };   
+    console.log(booking, " boookingggg")
+    setBookingData(booking)
+    routing.history.push("/book")
   };
 
   return (
     <div className="details-content-container">
+      {/* <Link to={"/book"}>BOOK ROUTE</Link> */}
       <div className="details-content-row">
         {renderImage()}
         <div className="details-content-column ml-2">
